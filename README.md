@@ -4,7 +4,7 @@
 
 A [Flarum](http://flarum.org) extension. Core Extension for Managing Forum Widgets.
 
-![ezgif-6-1f6ed7b6a82b](https://user-images.githubusercontent.com/20267363/127786208-3d46859a-fba6-48e1-8b56-b6ffff9dd279.gif)
+![animated_screenshot](https://user-images.githubusercontent.com/20267363/127786249-4f17bb07-9dfb-4066-8d91-6c92b61358cd.gif)
 
 ### Installation
 
