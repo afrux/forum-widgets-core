@@ -1,0 +1,43 @@
+.AfruxWidgets-WidgetSection, .item-afruxWidgetSection {
+  &:empty {
+    display: none !important;
+  }
+}
+
+.AfruxWidgets-sideNavAlt {
+  margin-left: 30px;
+  padding-top: 30px;
+  width: 180px;
+}
+
+.AfruxWidgets-topWidgetSection, .AfruxWidgets-bottomWidgetSection {
+  margin-top: 30px;
+}
+
+.AfruxWidgets-Widget {
+  &-title {
+    margin-bottom: 8px;
+    color: @control-color;
+
+    &-icon {
+      margin-right: 6px;
+      font-size: .9rem;
+      vertical-align: middle;
+    }
+
+    &-desc {
+      font-size: .7rem;
+      color: @muted-more-color;
+    }
+  }
+
+  &-content {
+    background: @control-bg;
+    padding: 12px 12px;
+    border-radius: @border-radius;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 16px;
+  }
+}
