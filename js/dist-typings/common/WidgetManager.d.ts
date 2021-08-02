@@ -10,6 +10,6 @@ export default class WidgetManager {
     add(widget: Widget, extension: any): void;
     getbyId(id: string): Widget | null;
     getWidgetInstances(): Widget[];
-    get(placement: string): Widget[];
+    get(placement: string, withHidden?: boolean): Widget[];
     setConfig(config: any): void;
 }
