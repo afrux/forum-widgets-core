@@ -1,42 +1,40 @@
-import { extend } from 'flarum/common/extend';
-
-import type Widget from '../common/extend/Widgets';
+import { Widget } from '../common/extend/Widgets';
 
 export default class WidgetManager {
   public widgets: Widget[] = [];
 
   /**
    * We only have this because the way we're injecting the widget sections
-   * ends up with the widgets rerendering.
+   * ends up with the widgets rerendering on navigation.
    */
-  public states = {};
+  public states: any = {};
 
-  private config = {};
+  private config: any = {};
 
-  add(widget: Widget, extension: any) {
+  add(widget: Widget, extension: any): void {
     widget.extension = extension;
     widget.id = `${extension}:${widget.key}`;
     this.widgets.push(widget);
     this.states[widget.id] = {};
   }
 
-  getbyId(id: string) {
-    return this.getWidgetInstances().find((w: Widget) => w.id === id)
+  getbyId(id: string): Widget | null {
+    return this.getWidgetInstances().find((w: Widget) => w.id === id) || null;
   }
 
-  getWidgetInstances() {
+  getWidgetInstances(): Widget[] {
     const disabled = this.config.disabled || [];
-    const widgets = (this.config.instances || []).map((widget: any): Widget => (
-      {
+    const widgets = (this.config.instances || []).map(
+      (widget: any): Widget => ({
         ...(this.widgets.find((w: Widget) => w.id === widget.id) || {}),
         ...widget,
-      }
-    ));
+      })
+    );
 
     this.widgets.forEach((widget: Widget) => {
       const lookupWidget = widgets.find((w: any) => w.id === widget.id);
 
-      if (! lookupWidget) {
+      if (!lookupWidget) {
         widgets.push(widget);
       }
     });
@@ -44,11 +42,11 @@ export default class WidgetManager {
     return widgets.filter((widget: Widget) => !disabled.includes(widget.id));
   }
 
-  get(placement: string) {
-    const widgets = this.getWidgetInstances()
+  get(placement: string): Widget[] {
+    const widgets: Widget[] = this.getWidgetInstances()
       .filter((widget: Widget) => widget.placement === placement)
-      .filter((widget: Widget) => typeof widget.isDisabled === 'function' ? !widget.isDisabled() : !widget.isDisabled)
-      .map((widget: Widget) => ({ ...widget, state: this.states[widget.id] }));
+      .filter((widget: Widget) => (typeof widget.isDisabled === 'function' ? !widget.isDisabled() : !widget.isDisabled))
+      .map((widget: Widget) => ({ ...widget, state: this.states[widget.id!] }));
 
     return widgets;
   }

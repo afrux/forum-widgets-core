@@ -3,6 +3,7 @@
   "extends": "flarum-tsconfig",
   // This will match all .ts, .tsx, .d.ts, .js, .jsx files
   "include": ["src/**/*", "../vendor/flarum/core/js/dist-typings/@types/**/*"],
+  "files": ["src/shims.d.ts"],
   "compilerOptions": {
     // This will output typings to `dist-typings`
     "declarationDir": "./dist-typings",

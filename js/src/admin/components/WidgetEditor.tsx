@@ -1,6 +1,5 @@
 import sortable from 'sortablejs';
 import * as Mithril from 'mithril';
-import Button from 'flarum/common/components/Button';
 import ExtensionPage from 'flarum/admin/components/ExtensionPage';
 import icon from 'flarum/common/helpers/icon';
 
@@ -10,30 +9,30 @@ import type { Widget } from '../../common/extend/Widgets';
 export default class WidgetEditor extends ExtensionPage {
   static settingKey = 'afrux-forum-widgets-core.config';
 
-  oninit(vnode: Mithril.Vnode) {
+  private config?: any;
+  private placeholderCache: any = {};
+
+  oninit(vnode: Mithril.Vnode): void {
     super.oninit(vnode);
 
     this.config = this.getConfig();
-    this.placeholderCache = {};
     app.widgets.setConfig(this.config);
   }
 
-  onupdate(vnode) {
+  onupdate(vnode): void {
     super.onupdate(vnode);
 
     this.cleanupLayout();
   }
 
-  content() {
+  content(): Mithril.Children {
     const settings = app.extensionData.getSettings(this.extension.id);
 
     return (
       <div className="ExtensionPage-settings">
         <div className="container">
           <div className="Form">
-            <div className="Form-group">
-              {this.editor()}
-            </div>
+            <div className="Form-group">{this.editor()}</div>
             {settings ? settings.map(this.buildSettingComponent.bind(this)) : null}
             <div className="Form-group">{this.submitButton()}</div>
           </div>
@@ -42,7 +41,7 @@ export default class WidgetEditor extends ExtensionPage {
     );
   }
 
-  editor() {
+  editor(): Mithril.Children {
     return (
       <div className="Afrux-ForumWidgets-editor" oncreate={this.createEditorSections.bind(this)}>
         <div className="Afrux-ForumWidgets-layout">
@@ -62,18 +61,14 @@ export default class WidgetEditor extends ExtensionPage {
           </div>
           <div className="Afrux-ForumWidgets-layout-contentWrapper Afrux-ForumWidgets-layout-container">
             <div className="Afrux-ForumWidgets-layout-topSection Afrux-ForumWidgets-layout-section">
-              <ol
-                data-section="top"
-                className="Afrux-ForumWidgets-layout-section-items">
+              <ol data-section="top" className="Afrux-ForumWidgets-layout-section-items">
                 {sortWidgets(app.widgets.get('top')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
               </ol>
             </div>
             <div className="Afrux-ForumWidgets-layout-sideNavContainer">
               <div className="Afrux-ForumWidgets-layout-sideNavWrapper">
                 <div className="Afrux-ForumWidgets-layout-startTopSection Afrux-ForumWidgets-layout-section">
-                  <ol
-                    data-section="start_top"
-                    className="Afrux-ForumWidgets-layout-section-items">
+                  <ol data-section="start_top" className="Afrux-ForumWidgets-layout-section-items">
                     {sortWidgets(app.widgets.get('start_top')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
                   </ol>
                 </div>
@@ -89,9 +84,7 @@ export default class WidgetEditor extends ExtensionPage {
                   ))}
                 </div>
                 <div className="Afrux-ForumWidgets-layout-startBottomSection Afrux-ForumWidgets-layout-section">
-                  <ol
-                    data-section="start_bottom"
-                    className="Afrux-ForumWidgets-layout-section-items">
+                  <ol data-section="start_bottom" className="Afrux-ForumWidgets-layout-section-items">
                     {sortWidgets(app.widgets.get('start_bottom')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
                   </ol>
                 </div>
@@ -100,31 +93,28 @@ export default class WidgetEditor extends ExtensionPage {
                 {this.makePlaceholders('sideNavOffset', 6, 20, 80).map((placeholder) => (
                   <div className="Afrux-ForumWidgets-layout-placeholderGroup">
                     <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon"></div>
-                    <div className="Afrux-ForumWidgets-layout-placeholderGroup-content">{placeholder}{this.makePlaceholders('discussion', 1, 20, 50)}</div>
+                    <div className="Afrux-ForumWidgets-layout-placeholderGroup-content">
+                      {placeholder}
+                      {this.makePlaceholders('discussion', 1, 20, 50)}
+                    </div>
                   </div>
                 ))}
               </div>
               <div className="Afrux-ForumWidgets-layout-sideNavAlt Afrux-ForumWidgets-layout-section">
-                <ol
-                  data-section="end"
-                  className="Afrux-ForumWidgets-layout-section-items">
+                <ol data-section="end" className="Afrux-ForumWidgets-layout-section-items">
                   {sortWidgets(app.widgets.get('end')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
                 </ol>
               </div>
             </div>
             <div className="Afrux-ForumWidgets-layout-bottomSection Afrux-ForumWidgets-layout-section">
-              <ol
-                data-section="bottom"
-                className="Afrux-ForumWidgets-layout-section-items">
+              <ol data-section="bottom" className="Afrux-ForumWidgets-layout-section-items">
                 {sortWidgets(app.widgets.get('bottom')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
               </ol>
             </div>
           </div>
         </div>
         <div className="Afrux-ForumWidgets-widgets">
-          <ol
-            data-section="store"
-            className="Afrux-ForumWidgets-widgets-store">
+          <ol data-section="store" className="Afrux-ForumWidgets-widgets-store">
             {app.widgets.widgets
               .filter((widget) => app.data.extensions[widget.extension])
               .map((widget: Widget, index: int) => {
@@ -132,11 +122,7 @@ export default class WidgetEditor extends ExtensionPage {
                 const available = this.isWidgetAvailable(widget);
 
                 return (
-                  <li
-                    data-id={widget.id}
-                    data-section="store"
-                    disabled={!available}
-                    key={index}>
+                  <li data-id={widget.id} data-section="store" disabled={!available} key={index}>
                     {this.widget(widget)}
                   </li>
                 );
@@ -147,7 +133,7 @@ export default class WidgetEditor extends ExtensionPage {
     );
   }
 
-  createEditorSections() {
+  createEditorSections(): void {
     this.cleanupLayout();
 
     this.$('.Afrux-ForumWidgets-layout-section-items, .Afrux-ForumWidgets-widgets-store')
@@ -171,13 +157,13 @@ export default class WidgetEditor extends ExtensionPage {
           ghostClass: section !== 'store' ? 'sortable-placeholder' : '',
           onSort: this.onSortUpdate.bind(this),
           onClone: (e) => {
-        		$(e.clone).attr('disabled', true);
-        	},
+            $(e.clone).attr('disabled', true);
+          },
           onAdd: (e) => {
             if (section === 'store') {
               this.setConfig({
                 ...this.config,
-                disabled: [...(this.config.disabled || []), e.item.dataset.id]
+                disabled: [...(this.config.disabled || []), e.item.dataset.id],
               });
 
               e.item.parentNode.removeChild(e.item);
@@ -188,7 +174,7 @@ export default class WidgetEditor extends ExtensionPage {
             if (section === 'store') {
               this.setConfig({
                 ...this.config,
-                disabled: (this.config.disabled || []).filter(wid => wid !== e.item.dataset.id),
+                disabled: (this.config.disabled || []).filter((wid) => wid !== e.item.dataset.id),
               });
             }
           },
@@ -196,15 +182,17 @@ export default class WidgetEditor extends ExtensionPage {
       });
   }
 
-  cleanupLayout() {
-    this.$('.Afrux-ForumWidgets-layout-section-items').get().map((element) => {
-      const section = element.dataset.section;
+  cleanupLayout(): void {
+    this.$('.Afrux-ForumWidgets-layout-section-items')
+      .get()
+      .map((element) => {
+        const section = element.dataset.section;
 
-      this.$(`.Afrux-ForumWidgets-layout-section-items[data-section="${section}"] li:not([data-section="${section}"])`).remove();
-    });
+        this.$(`.Afrux-ForumWidgets-layout-section-items[data-section="${section}"] li:not([data-section="${section}"])`).remove();
+      });
   }
 
-  widget(widget: Widget, placed: boolean = false) {
+  widget(widget: Widget, placed: boolean = false): Mithril.Children {
     const extension = app.data.extensions[widget.extension];
 
     return (
@@ -213,28 +201,22 @@ export default class WidgetEditor extends ExtensionPage {
           <span className="Afrux-ForumWidgets-Widget-icon ExtensionIcon" style={extension.icon}>
             {extension.icon ? icon(extension.icon.name) : ''}
           </span>
-          <span className="Afrux-ForumWidgets-Widget-title">
-            {extension.extra['flarum-extension'].title}
-          </span>
+          <span className="Afrux-ForumWidgets-Widget-title">{extension.extra['flarum-extension'].title}</span>
         </div>
       </div>
     );
   }
 
-  layoutWidget(widget: Widget) {
+  layoutWidget(widget: Widget): Mithril.Children {
     return (
-      <li
-        className="Afrux-ForumWidgets-layout-widget"
-        data-id={widget.id}
-        data-section={widget.placement}
-        key={Math.floor(Math.random() * 200)}>
+      <li className="Afrux-ForumWidgets-layout-widget" data-id={widget.id} data-section={widget.placement} key={Math.floor(Math.random() * 200)}>
         {this.widget(widget, true)}
       </li>
     );
   }
 
-  onSortUpdate(e) {
-    const instances = [];
+  onSortUpdate(): void {
+    const instances: any[] = [];
 
     this.$('.Afrux-ForumWidgets-layout-section-items')
       .get()
@@ -262,27 +244,33 @@ export default class WidgetEditor extends ExtensionPage {
     return disabled.includes(widget.id) && widget.isUnique;
   }
 
-  makePlaceholders(key: string, count: number = 1, minWidth?: number, maxWidth?: number) {
+  makePlaceholders(key: string, count: number = 1, minWidth?: number, maxWidth?: number): Mithril.Children {
     if (this.placeholderCache[key]) return this.placeholderCache[key];
 
-    return this.placeholderCache[key] = Array(count).fill(null).map(() => (
-      <div
-        className="Afrux-ForumWidgets-layout-placeholder"
-        style={minWidth && maxWidth ? {
-          "--width": (Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth) +'%'
-        } : {}}
-      ></div>
-    ));
+    return (this.placeholderCache[key] = Array(count)
+      .fill(null)
+      .map(() => (
+        <div
+          className="Afrux-ForumWidgets-layout-placeholder"
+          style={
+            minWidth && maxWidth
+              ? {
+                  '--width': Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth + '%',
+                }
+              : {}
+          }
+        ></div>
+      )));
   }
 
-  getConfig() {
-    return JSON.parse(this.setting(this.constructor.settingKey)() || '{}');
+  getConfig(): any {
+    return JSON.parse(this.setting(WidgetEditor.settingKey)() || '{}');
   }
 
-  setConfig(config: any) {
+  setConfig(config: any): void {
     this.config = config;
     app.widgets.setConfig(config);
-    this.setting(this.constructor.settingKey)(JSON.stringify(config));
+    this.setting(WidgetEditor.settingKey)(JSON.stringify(config));
     m.redraw();
   }
 }

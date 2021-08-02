@@ -1,9 +1,10 @@
+import * as Mithril from 'mithril';
 import Component from 'flarum/common/Component';
 import classList from 'flarum/common/utils/classList';
 import icon from 'flarum/common/helpers/icon';
 
 export default class Widget extends Component {
-  view() {
+  view(): Mithril.Vnode {
     return (
       <div className={classList(['AfruxWidgets-Widget', this.className()])}>
         {this.header()}
@@ -12,38 +13,36 @@ export default class Widget extends Component {
     );
   }
 
-  header() {
+  header(): Mithril.Vnode | null {
     const iconName = this.icon();
     const title = this.title();
 
     return title ? (
       <div className="AfruxWidgets-Widget-title">
-        {iconName ? (
-          <span className="AfruxWidgets-Widget-title-icon">{icon(iconName)}</span>
-        ) : null}
+        {iconName ? <span className="AfruxWidgets-Widget-title-icon">{icon(iconName)}</span> : null}
         <span className="AfruxWidgets-Widget-title-label">{title}</span>
         <div className="AfruxWidgets-Widget-title-desc">{this.description()}</div>
       </div>
     ) : null;
   }
 
-  className() {
+  className(): string {
     return '';
   }
 
-  title() {
+  title(): string | null {
     return '';
   }
 
-  description() {
+  description(): string {
     return '';
   }
 
-  icon() {
+  icon(): string | null {
     return '';
   }
 
-  content() {
+  content(): Mithril.Vnode | string {
     return '';
   }
 }

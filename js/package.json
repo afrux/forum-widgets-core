@@ -13,12 +13,15 @@
   },
   "devDependencies": {
     "@types/sortablejs": "^1.10.7",
+    "bundlewatch": "^0.3.2",
     "prettier": "^2.3.0"
   },
   "scripts": {
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
     "format": "prettier --write src",
-    "format-check": "prettier --check src"
+    "format-check": "prettier --check src",
+    "clean-typings": "npx rimraf dist-typings && mkdir dist-typings",
+    "build-typings": "npm run clean-typings && cp -r @types dist-typings/@types && tsc"
   }
 }
