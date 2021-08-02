@@ -4,7 +4,8 @@
 </p><p align=center>
 <a href="http://flarum.org">Flarum</a> Core Extension for Managing Forum Widgets.
 <img src="https://user-images.githubusercontent.com/20267363/127786249-4f17bb07-9dfb-4066-8d91-6c92b61358cd.gif" alt="animated_screenshot">
-<img src="https://user-images.githubusercontent.com/20267363/127903214-a96f08ba-1a71-42b0-bc17-5b2c65a68859.png" alt="forum screenshot">
+  
+<img width=250 src="https://user-images.githubusercontent.com/20267363/127903214-a96f08ba-1a71-42b0-bc17-5b2c65a68859.png" alt="forum screenshot">
 </p>
 
 ## Installation
