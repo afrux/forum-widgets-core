@@ -1,9 +1,13 @@
 import * as Mithril from 'mithril';
-import Component from 'flarum/common/Component';
+import Component, { ComponentAttrs } from 'flarum/common/Component';
 import classList from 'flarum/common/utils/classList';
 import icon from 'flarum/common/helpers/icon';
 
-export default class Widget extends Component {
+export interface WidgetAttrs extends ComponentAttrs {
+  state: any;
+};
+
+export default class Widget<T extends WidgetAttrs> extends Component<T> {
   view(): Mithril.Children {
     return (
       <div className={classList(['AfruxWidgets-Widget', this.className()])}>

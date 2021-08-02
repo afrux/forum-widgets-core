@@ -107,6 +107,11 @@ app.initializers.add('my-extension-id', () => {
 });
 ```
 
+4. If you are using typescript, you can add the typings of this package by adding this to the `paths` key in your `tsconfig.json` file:
+```json
+"flarum/extensions/afrux-forum-widgets-core/*": ["../vendor/afrux/forum-widgets-core/js/dist-typings/*"]
+```
+
 You can also checkout other example widgets in the Afrux github org.
 
 ## Links
