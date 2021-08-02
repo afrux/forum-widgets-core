@@ -25,7 +25,7 @@ return [
     new Extend\Locales(__DIR__.'/locale'),
 
     (new Extend\Settings)
-        ->serializeToForum('afrux-forum-widgets-core.config', 'afrux-forum-widgets-core.config', function (string $value): array {
+        ->serializeToForum('afrux-forum-widgets-core.config', 'afrux-forum-widgets-core.config', function (?string $value): array {
             return $value ? json_decode($value, true) : [];
         }),
 ];
