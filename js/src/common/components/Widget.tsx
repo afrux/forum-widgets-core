@@ -5,7 +5,7 @@ import icon from 'flarum/common/helpers/icon';
 
 export interface WidgetAttrs extends ComponentAttrs {
   state: any;
-};
+}
 
 export default class Widget<T extends WidgetAttrs> extends Component<T> {
   view(): Mithril.Children {
