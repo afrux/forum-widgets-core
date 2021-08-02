@@ -21,6 +21,7 @@ Here is a list of currently compatible widgets you can install:
 * [Online Users](https://github.com/afrux/online-users-widget)
 * [Forum Stats](https://github.com/afrux/forum-stats-widget)
 * [Top Posters](https://github.com/afrux/top-posters-widget)
+* [News Fader](https://github.com/afrux/news-widget)
 
 ## Updating
 
