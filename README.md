@@ -8,11 +8,19 @@
 
 ## Installation
 
+Remember that this is just a forum widgets editor, it doesn't actually come with any widgets.
+
 Install with composer:
 
 ```sh
 composer require afrux/forum-widgets-core:"*"
 ```
+
+Here is a list of currently compatible widgets you can install:
+
+* [Online Users](https://github.com/afrux/online-users-widget)
+* [Forum Stats](https://github.com/afrux/forum-widget)
+* [Top Posters](https://github.com/afrux/top-posters-widget)
 
 ## Updating
 
