@@ -42,10 +42,10 @@ export default class WidgetManager {
     return widgets.filter((widget: Widget) => !disabled.includes(widget.id));
   }
 
-  get(placement: string): Widget[] {
+  get(placement: string, withHidden: boolean = false): Widget[] {
     const widgets: Widget[] = this.getWidgetInstances()
       .filter((widget: Widget) => widget.placement === placement)
-      .filter((widget: Widget) => (typeof widget.isDisabled === 'function' ? !widget.isDisabled() : !widget.isDisabled))
+      .filter((widget: Widget) => withHidden || (typeof widget.isDisabled === 'function' ? !widget.isDisabled() : !widget.isDisabled))
       .map((widget: Widget) => ({ ...widget, state: this.states[widget.id!] }));
 
     return widgets;

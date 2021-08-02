@@ -62,21 +62,21 @@ export default class WidgetEditor extends ExtensionPage {
           <div className="Afrux-ForumWidgets-layout-contentWrapper Afrux-ForumWidgets-layout-container">
             <div className="Afrux-ForumWidgets-layout-topSection Afrux-ForumWidgets-layout-section">
               <ol data-section="top" className="Afrux-ForumWidgets-layout-section-items">
-                {sortWidgets(app.widgets.get('top')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
+                {sortWidgets(app.widgets.get('top', true)).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
               </ol>
             </div>
             <div className="Afrux-ForumWidgets-layout-sideNavContainer">
               <div className="Afrux-ForumWidgets-layout-sideNavWrapper">
                 <div className="Afrux-ForumWidgets-layout-startTopSection Afrux-ForumWidgets-layout-section">
                   <ol data-section="start_top" className="Afrux-ForumWidgets-layout-section-items">
-                    {sortWidgets(app.widgets.get('start_top')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
+                    {sortWidgets(app.widgets.get('start_top', true)).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
                   </ol>
                 </div>
                 <div className="Afrux-ForumWidgets-layout-sideNav Afrux-ForumWidgets-layout-concrete">
                   <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--button">
                     <div className="Afrux-ForumWidgets-layout-placeholder"></div>
                   </div>
-                  {this.makePlaceholders('sidenav', 8, 20, 80).map((placeholder) => (
+                  {this.makePlaceholders('sidenav', 8, 20, 80).map((placeholder: Mithril.Children) => (
                     <div className="Afrux-ForumWidgets-layout-placeholderGroup">
                       <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon"></div>
                       {placeholder}
@@ -85,12 +85,12 @@ export default class WidgetEditor extends ExtensionPage {
                 </div>
                 <div className="Afrux-ForumWidgets-layout-startBottomSection Afrux-ForumWidgets-layout-section">
                   <ol data-section="start_bottom" className="Afrux-ForumWidgets-layout-section-items">
-                    {sortWidgets(app.widgets.get('start_bottom')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
+                    {sortWidgets(app.widgets.get('start_bottom', true)).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
                   </ol>
                 </div>
               </div>
               <div className="Afrux-ForumWidgets-layout-sideNavOffset Afrux-ForumWidgets-layout-concrete">
-                {this.makePlaceholders('sideNavOffset', 6, 20, 80).map((placeholder) => (
+                {this.makePlaceholders('sideNavOffset', 6, 20, 80).map((placeholder: Mithril.Children) => (
                   <div className="Afrux-ForumWidgets-layout-placeholderGroup">
                     <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon"></div>
                     <div className="Afrux-ForumWidgets-layout-placeholderGroup-content">
@@ -102,13 +102,13 @@ export default class WidgetEditor extends ExtensionPage {
               </div>
               <div className="Afrux-ForumWidgets-layout-sideNavAlt Afrux-ForumWidgets-layout-section">
                 <ol data-section="end" className="Afrux-ForumWidgets-layout-section-items">
-                  {sortWidgets(app.widgets.get('end')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
+                  {sortWidgets(app.widgets.get('end', true)).map((widget: Widget, index: number) => this.layoutWidget(widget, index))}
                 </ol>
               </div>
             </div>
             <div className="Afrux-ForumWidgets-layout-bottomSection Afrux-ForumWidgets-layout-section">
               <ol data-section="bottom" className="Afrux-ForumWidgets-layout-section-items">
-                {sortWidgets(app.widgets.get('bottom')).map((widget: Widget, index: int) => this.layoutWidget(widget, index))}
+                {sortWidgets(app.widgets.get('bottom', true)).map((widget: Widget, index: number) => this.layoutWidget(widget, index))}
               </ol>
             </div>
           </div>
@@ -116,8 +116,8 @@ export default class WidgetEditor extends ExtensionPage {
         <div className="Afrux-ForumWidgets-widgets">
           <ol data-section="store" className="Afrux-ForumWidgets-widgets-store">
             {app.widgets.widgets
-              .filter((widget) => app.data.extensions[widget.extension])
-              .map((widget: Widget, index: int) => {
+              .filter((widget: Widget) => app.data.extensions[widget.extension])
+              .map((widget: Widget, index: number) => {
                 const attrs = {};
                 const available = this.isWidgetAvailable(widget);
 
