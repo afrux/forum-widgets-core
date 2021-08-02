@@ -49,7 +49,8 @@ import Widget from 'flarum/extensions/afrux-forum-widgets-core/common/components
 export default class MyWidget extends Widget {
   className() {
     // Custom class name.
-    // Please avoid applying custom styles so that it works fine with other flarum themes.
+    // You can also use the class "AfruxWidgets-Widget--flat" for a flat widget (not contained in a block).
+    // Please avoid strong custom styling so that it looks consistent in other themes.
     return 'MyWidget';
   }
 
