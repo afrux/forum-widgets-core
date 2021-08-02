@@ -11,7 +11,13 @@
 }
 
 .AfruxWidgets-topWidgetSection, .AfruxWidgets-bottomWidgetSection {
+  display: flex;
+  gap: 12px;
   margin-top: 30px;
+
+  > * {
+    flex-grow: 1;
+  }
 }
 
 .AfruxWidgets-Widget {
