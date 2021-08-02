@@ -1,12 +1,12 @@
-# Forum Widgets
-
-![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/afrux/forum-widgets-core.svg)](https://packagist.org/packages/afrux/forum-widgets-core) [![Total Downloads](https://img.shields.io/packagist/dt/afrux/forum-widgets-core.svg)](https://packagist.org/packages/afrux/forum-widgets-core)
-
-A [Flarum](http://flarum.org) extension. Core Extension for Managing Forum Widgets.
-
+<p align=center><img src="https://raw.githubusercontent.com/afrux/forum-widgets-core/master/icon.svg" alt="icon"></p>
+<h1 align=center>Forum Widgets</h1>
+<img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square"> <a href="https://packagist.org/packages/afrux/forum-widgets-core"><img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/afrux/forum-widgets-core.svg?style=flat-square"></a> <a href="https://packagist.org/packages/afrux/forum-widgets-core"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/afrux/forum-widgets-core.svg?style=flat-square"></a> <a href="https://www.buymeacoffee.com/sycho"><img alt="donate" src="https://img.shields.io/badge/donate-buy%20me%20a%20coffee-%23ffde39?style=flat-square"></a>
+</p><p align=center>
+[Flarum](http://flarum.org) Core Extension for Managing Forum Widgets.
 ![animated_screenshot](https://user-images.githubusercontent.com/20267363/127786249-4f17bb07-9dfb-4066-8d91-6c92b61358cd.gif)
+</p>
 
-### Installation
+## Installation
 
 Install with composer:
 
@@ -14,7 +14,7 @@ Install with composer:
 composer require afrux/forum-widgets-core:"*"
 ```
 
-### Updating
+## Updating
 
 ```sh
 composer update afrux/forum-widgets-core:"*"
@@ -22,7 +22,7 @@ php flarum migrate
 php flarum cache:clear
 ```
 
-### Extend
+## Extend
 Extension developers wanting to create widgets with this small framework, the following explains how you can register a new widget, for now you should only register one widget per extension.
 
 1. Require this extension in your extension's `composer.json`:
@@ -101,7 +101,7 @@ app.initializers.add('my-extension-id', () => {
 
 You can also checkout other example widgets in the Afrux github org.
 
-### Links
+## Links
 
 - [Packagist](https://packagist.org/packages/afrux/forum-widgets-core)
 - [GitHub](https://github.com/afrux/forum-widgets-core)
