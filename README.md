@@ -1,9 +1,9 @@
-<p align=center><img src="https://raw.githubusercontent.com/afrux/forum-widgets-core/master/icon.svg" alt="icon"></p>
-<h1 align=center>Forum Widgets</h1>
+<p align=center><img width=150 src="https://raw.githubusercontent.com/afrux/forum-widgets-core/master/icon.svg" alt="icon"></p>
+<h1 align=center>Forum Widgets</h1><p align=center>
 <img alt="License" src="https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square"> <a href="https://packagist.org/packages/afrux/forum-widgets-core"><img alt="Latest Stable Version" src="https://img.shields.io/packagist/v/afrux/forum-widgets-core.svg?style=flat-square"></a> <a href="https://packagist.org/packages/afrux/forum-widgets-core"><img alt="Total Downloads" src="https://img.shields.io/packagist/dt/afrux/forum-widgets-core.svg?style=flat-square"></a> <a href="https://www.buymeacoffee.com/sycho"><img alt="donate" src="https://img.shields.io/badge/donate-buy%20me%20a%20coffee-%23ffde39?style=flat-square"></a>
 </p><p align=center>
 [Flarum](http://flarum.org) Core Extension for Managing Forum Widgets.
-![animated_screenshot](https://user-images.githubusercontent.com/20267363/127786249-4f17bb07-9dfb-4066-8d91-6c92b61358cd.gif)
+<img src="https://user-images.githubusercontent.com/20267363/127786249-4f17bb07-9dfb-4066-8d91-6c92b61358cd.gif" alt="animated_screenshot">
 </p>
 
 ## Installation
