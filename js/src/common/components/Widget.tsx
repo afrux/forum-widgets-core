@@ -4,7 +4,7 @@ import classList from 'flarum/common/utils/classList';
 import icon from 'flarum/common/helpers/icon';
 
 export default class Widget extends Component {
-  view(): Mithril.Vnode {
+  view(): Mithril.Children {
     return (
       <div className={classList(['AfruxWidgets-Widget', this.className()])}>
         {this.header()}
@@ -13,7 +13,7 @@ export default class Widget extends Component {
     );
   }
 
-  header(): Mithril.Vnode | null {
+  header(): Mithril.Children {
     const iconName = this.icon();
     const title = this.title();
 
@@ -30,7 +30,7 @@ export default class Widget extends Component {
     return '';
   }
 
-  title(): string | null {
+  title(): string {
     return '';
   }
 
@@ -38,11 +38,11 @@ export default class Widget extends Component {
     return '';
   }
 
-  icon(): string | null {
+  icon(): string {
     return '';
   }
 
-  content(): Mithril.Vnode | string {
+  content(): Mithril.Children {
     return '';
   }
 }

@@ -1,11 +1,11 @@
 import * as Mithril from 'mithril';
 import Component from 'flarum/common/Component';
 export default class Widget extends Component {
-    view(): Mithril.Vnode;
-    header(): Mithril.Vnode | null;
+    view(): Mithril.Children;
+    header(): Mithril.Children;
     className(): string;
-    title(): string | null;
+    title(): string;
     description(): string;
-    icon(): string | null;
-    content(): Mithril.Vnode | string;
+    icon(): string;
+    content(): Mithril.Children;
 }
