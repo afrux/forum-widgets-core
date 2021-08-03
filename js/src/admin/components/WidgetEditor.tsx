@@ -215,7 +215,8 @@ export default class WidgetEditor extends ExtensionPage {
         data-section={widget.placement}
         data-key={widget.key}
         data-extension={widget.extension}
-        key={Math.floor(Math.random() * 200)}>
+        key={Math.floor(Math.random() * 200)}
+      >
         {this.widget(widget, true)}
       </li>
     );
