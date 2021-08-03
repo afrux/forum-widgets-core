@@ -46,6 +46,13 @@ export default class WidgetManager {
     const widgets: Widget[] = this.getWidgetInstances()
       .filter((widget: Widget) => widget.placement === placement)
       .filter((widget: Widget) => withHidden || (typeof widget.isDisabled === 'function' ? !widget.isDisabled() : !widget.isDisabled))
+      .filter((widget: Widget) => {
+        // @TODO forgetting to add the extension name on the saved data forces us to split the ID
+        // remove this in a future version and use extension value directly.
+        const extension = widget.extension || widget.id!.split(':')[0];
+
+        return extension in flarum.extensions;
+      })
       .map((widget: Widget) => ({ ...widget, state: this.states[widget.id!] }));
 
     return widgets;

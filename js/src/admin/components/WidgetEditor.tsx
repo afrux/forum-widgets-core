@@ -209,7 +209,13 @@ export default class WidgetEditor extends ExtensionPage {
 
   layoutWidget(widget: Widget): Mithril.Children {
     return (
-      <li className="Afrux-ForumWidgets-layout-widget" data-id={widget.id} data-section={widget.placement} key={Math.floor(Math.random() * 200)}>
+      <li
+        className="Afrux-ForumWidgets-layout-widget"
+        data-id={widget.id}
+        data-section={widget.placement}
+        data-key={widget.key}
+        data-extension={widget.extension}
+        key={Math.floor(Math.random() * 200)}>
         {this.widget(widget, true)}
       </li>
     );
@@ -226,6 +232,8 @@ export default class WidgetEditor extends ExtensionPage {
         Array.from(sectionElement.children).map((widgetElement, i: int) => {
           instances.push({
             id: widgetElement.dataset.id,
+            extension: widgetElement.dataset.extension,
+            key: widgetElement.dataset.key,
             placement: sectionElement.dataset.section,
             position: i,
           });
