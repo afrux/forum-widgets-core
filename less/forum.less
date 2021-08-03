@@ -8,6 +8,21 @@
   margin-left: 30px;
   padding-top: 30px;
   width: 180px;
+
+  @media @tablet, @phone {
+    margin: 0;
+    width: auto;
+  }
+}
+
+.item-startTopWidgetSection, .item-startBottomWidgetSection  {
+  @media @tablet {
+    display: none !important;
+  }
+
+  @media @phone {
+    margin-top: 16px;
+  }
 }
 
 .AfruxWidgets-topWidgetSection, .AfruxWidgets-bottomWidgetSection {
