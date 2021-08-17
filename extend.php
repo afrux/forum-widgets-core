@@ -27,5 +27,6 @@ return [
     (new Extend\Settings)
         ->serializeToForum('afrux-forum-widgets-core.config', 'afrux-forum-widgets-core.config', function (?string $value): array {
             return $value ? json_decode($value, true) : [];
-        }),
+        })
+        ->serializeToForum('afrux-forum-widgets-core.preferDataWithInitialLoad', 'afrux-forum-widgets-core.prefer_data_with_initial_load', 'boolval'),
 ];
