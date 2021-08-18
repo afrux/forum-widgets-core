@@ -47,17 +47,17 @@ export default class WidgetEditor extends ExtensionPage {
         <div className="Afrux-ForumWidgets-layout">
           <div className="Afrux-ForumWidgets-layout-header Afrux-ForumWidgets-layout-concrete">
             <div className="Afrux-ForumWidgets-layout-container Afrux-ForumWidgets-layout-headerWrapper">
-              <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--header"></div>
+              <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--header" />
               <div className="Afrux-ForumWidgets-layout-placeholderGroup">
-                <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon"></div>
-                <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon"></div>
+                <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon" />
+                <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon" />
               </div>
             </div>
           </div>
           <div className="Afrux-ForumWidgets-layout-hero Afrux-ForumWidgets-layout-concrete">
-            <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--header"></div>
-            <div className="Afrux-ForumWidgets-layout-placeholder"></div>
-            <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--long"></div>
+            <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--header"/>
+            <div className="Afrux-ForumWidgets-layout-placeholder" />
+            <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--long" />
           </div>
           <div className="Afrux-ForumWidgets-layout-contentWrapper Afrux-ForumWidgets-layout-container">
             <div className="Afrux-ForumWidgets-layout-topSection Afrux-ForumWidgets-layout-section">
@@ -74,11 +74,11 @@ export default class WidgetEditor extends ExtensionPage {
                 </div>
                 <div className="Afrux-ForumWidgets-layout-sideNav Afrux-ForumWidgets-layout-concrete">
                   <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--button">
-                    <div className="Afrux-ForumWidgets-layout-placeholder"></div>
+                    <div className="Afrux-ForumWidgets-layout-placeholder" />
                   </div>
                   {this.makePlaceholders('sidenav', 8, 20, 80).map((placeholder: Mithril.Children) => (
                     <div className="Afrux-ForumWidgets-layout-placeholderGroup">
-                      <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon"></div>
+                      <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--icon" />
                       {placeholder}
                     </div>
                   ))}
@@ -166,7 +166,7 @@ export default class WidgetEditor extends ExtensionPage {
                 disabled: [...(this.config.disabled || []), e.item.dataset.id],
               });
 
-              e.item.parentNode.removeChild(e.item);
+              e.item.parentNode?.removeChild(e.item);
               this.$(`.Afrux-ForumWidgets-widgets-store li[data-id="${e.item.dataset.id}"]`).attr('disabled', false);
             }
           },
@@ -268,7 +268,7 @@ export default class WidgetEditor extends ExtensionPage {
                 }
               : {}
           }
-        ></div>
+        />
       )));
   }
 
