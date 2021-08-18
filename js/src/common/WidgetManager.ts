@@ -53,7 +53,7 @@ export default class WidgetManager {
 
         return extension in flarum.extensions;
       })
-      .map((widget: Widget) => ({ ...widget, state: this.states[widget.id!] }));
+      .map((widget: Widget) => ({ ...widget, extension: widget.extension || widget.id!.split(':')[0], state: this.states[widget.id!] }));
 
     return widgets;
   }
