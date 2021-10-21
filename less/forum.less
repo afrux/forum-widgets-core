@@ -4,17 +4,6 @@
   }
 }
 
-.AfruxWidgets-sideNavAlt {
-  margin-left: 30px;
-  padding-top: 30px;
-  width: 180px;
-
-  @media @tablet, @phone {
-    margin: 0;
-    width: auto;
-  }
-}
-
 .item-startTopWidgetSection, .item-startBottomWidgetSection  {
   @media @tablet {
     display: none !important;
@@ -23,47 +12,82 @@
   @media @phone {
     margin-top: 16px;
   }
-}
 
-.AfruxWidgets-topWidgetSection, .AfruxWidgets-bottomWidgetSection {
-  display: flex;
-  gap: 12px;
-  margin-top: 30px;
-
-  > * {
-    flex-grow: 1;
+  &:empty {
+    display: none !important;
   }
 }
 
-.AfruxWidgets-Widget {
-  &-title {
-    margin-bottom: 8px;
-    color: @control-color;
+.AfruxWidgets {
+  &-sideNavAlt {
+    margin-left: 30px;
+    padding-top: 30px;
+    width: 180px;
 
-    &-icon {
-      margin-right: 6px;
-      font-size: .9rem;
-      vertical-align: middle;
-    }
-
-    &-desc {
-      font-size: .7rem;
-      color: @muted-more-color;
+    @media @tablet, @phone {
+      margin: 0;
+      width: auto;
     }
   }
 
-  &-content {
-    background: @control-bg;
-    padding: 12px 12px;
-    border-radius: @border-radius;
+  &-topWidgetSection, &-bottomWidgetSection {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+
+    > * {
+      flex-grow: 1;
+    }
+
+    @media @tablet, @phone {
+      overflow-x: auto;
+      flex-flow: row nowrap;
+      -webkit-mask-image: linear-gradient(to right,#000 95%,rgba(0,0,0,0) 100%);
+
+      > * {
+        min-width: 200px;
+      }
+    }
   }
 
-  &--flat &-content {
-    padding: 0;
-    background: transparent;
+  &-WidgetSection {
+    @media @tablet, @phone {
+      &--endScroll {
+        -webkit-mask-image: none;
+      }
+    }
   }
 
-  &:not(:last-child) {
-    margin-bottom: 16px;
+  &-Widget {
+    &-title {
+      margin-bottom: 8px;
+      color: @control-color;
+
+      &-icon {
+        margin-right: 6px;
+        font-size: .9rem;
+        vertical-align: middle;
+      }
+
+      &-desc {
+        font-size: .7rem;
+        color: @muted-more-color;
+      }
+    }
+
+    &-content {
+      background: @control-bg;
+      padding: 12px 12px;
+      border-radius: @border-radius;
+    }
+
+    &--flat &-content {
+      padding: 0;
+      background: transparent;
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
   }
 }
