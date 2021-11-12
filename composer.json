@@ -44,7 +44,7 @@
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.1.x-dev"
+            "dev-main": "0.1.x-dev"
         },
         "flarum-extension": {
             "title": "Forum Widgets",
