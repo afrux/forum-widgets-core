@@ -1,13 +1,15 @@
-import * as Mithril from 'mithril';
-import ExtensionPage from 'flarum/admin/components/ExtensionPage';
+import type Mithril from 'mithril';
+import ExtensionPage, { ExtensionPageAttrs } from 'flarum/admin/components/ExtensionPage';
 import type { Widget } from '../../common/extend/Widgets';
-export default class WidgetEditor extends ExtensionPage {
+interface WidgetEditorAttrs extends ExtensionPageAttrs {
+}
+export default class WidgetEditor extends ExtensionPage<WidgetEditorAttrs> {
     static settingKey: string;
     private config?;
     private placeholderCache;
-    oninit(vnode: Mithril.Vnode): void;
-    onupdate(vnode: any): void;
-    content(): Mithril.Children;
+    oninit(vnode: Mithril.Vnode<WidgetEditorAttrs, this>): void;
+    onupdate(vnode: Mithril.Vnode<WidgetEditorAttrs, this>): void;
+    content(vnode: Mithril.Vnode<WidgetEditorAttrs, this>): JSX.Element;
     editor(): Mithril.Children;
     createEditorSections(): void;
     cleanupLayout(): void;
@@ -19,3 +21,4 @@ export default class WidgetEditor extends ExtensionPage {
     getConfig(): any;
     setConfig(config: any): void;
 }
+export {};
