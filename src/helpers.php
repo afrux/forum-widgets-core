@@ -2,6 +2,10 @@
 
 namespace Afrux\ForumWidgets\Helper;
 
+use Flarum\Foundation\Paths;
+use Illuminate\Cache\FileStore;
+use Illuminate\Contracts\Cache\Repository;
+
 /**
  * @link https://stackoverflow.com/questions/4371059/shorten-long-numbers-to-k-m-b
  */
@@ -18,4 +22,17 @@ function pretty_number_format(int $number, int $precision = 2): string
     }
 
     return $format;
+}
+
+function afrux_cache_is_writable(): bool
+{
+    $cacheRepository = resolve(Repository::class);
+    $cacheStore = $cacheRepository->getStore();
+
+    if ($cacheStore instanceof FileStore) {
+        /** @var FileStore $cacheStore */
+        return is_writable($cacheStore->getDirectory());
+    }
+
+    return true;
 }

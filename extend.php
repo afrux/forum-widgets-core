@@ -12,6 +12,8 @@
 namespace Afrux\ForumWidgets;
 
 use Flarum\Extend;
+use Flarum\Frontend\Document;
+use function Afrux\ForumWidgets\Helper\afrux_cache_is_writable;
 
 return [
     (new Extend\Frontend('forum'))
@@ -20,7 +22,10 @@ return [
 
     (new Extend\Frontend('admin'))
         ->js(__DIR__.'/js/dist/admin.js')
-        ->css(__DIR__.'/less/admin.less'),
+        ->css(__DIR__.'/less/admin.less')
+        ->content(function (Document $document) {
+            $document->payload['afrux-forum-widgets-core.cache_store_writable'] = afrux_cache_is_writable();
+        }),
 
     new Extend\Locales(__DIR__.'/locale'),
 

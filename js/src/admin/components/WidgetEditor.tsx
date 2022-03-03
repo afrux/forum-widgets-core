@@ -1,40 +1,49 @@
+import app from 'flarum/admin/app';
 import sortable from 'sortablejs';
-import * as Mithril from 'mithril';
-import ExtensionPage from 'flarum/admin/components/ExtensionPage';
+import type Mithril from 'mithril';
+import ExtensionPage, {ExtensionPageAttrs} from 'flarum/admin/components/ExtensionPage';
 import icon from 'flarum/common/helpers/icon';
 
 import sortWidgets from '../../common/utils/sortWidgets';
 import type { Widget } from '../../common/extend/Widgets';
+import Alert from "flarum/common/components/Alert";
 
-export default class WidgetEditor extends ExtensionPage {
+interface WidgetEditorAttrs extends ExtensionPageAttrs {}
+
+export default class WidgetEditor extends ExtensionPage<WidgetEditorAttrs> {
   static settingKey = 'afrux-forum-widgets-core.config';
 
   private config?: any;
   private placeholderCache: any = {};
 
-  oninit(vnode: Mithril.Vnode): void {
+  oninit(vnode: Mithril.Vnode<WidgetEditorAttrs, this>): void {
     super.oninit(vnode);
 
     this.config = this.getConfig();
     app.widgets.setConfig(this.config);
   }
 
-  onupdate(vnode): void {
+  onupdate(vnode: Mithril.Vnode<WidgetEditorAttrs, this>): void {
     super.onupdate(vnode);
 
     this.cleanupLayout();
   }
 
-  content(): Mithril.Children {
+  content(vnode: Mithril.Vnode<WidgetEditorAttrs, this>) {
     const settings = app.extensionData.getSettings(this.extension.id);
 
     return (
       <div className="ExtensionPage-settings">
         <div className="container">
+          {!app.data['afrux-forum-widgets-core.cache_store_writable'] ? (
+            <Alert type="error" dismissible={false}>
+              {app.translator.trans('afrux-forum-widgets-core.admin.cache_not_writable_warning')}
+            </Alert>
+          ) : null}
           <div className="Form">
             <div className="Form-group">{this.editor()}</div>
             {settings ? settings.map(this.buildSettingComponent.bind(this)) : null}
-            <div className="Form-group">{this.submitButton()}</div>
+            <div className="Form-group">{this.submitButton(vnode)}</div>
           </div>
         </div>
       </div>
@@ -116,7 +125,7 @@ export default class WidgetEditor extends ExtensionPage {
         <div className="Afrux-ForumWidgets-widgets">
           <ol data-section="store" className="Afrux-ForumWidgets-widgets-store">
             {app.widgets.widgets
-              .filter((widget: Widget) => app.data.extensions[widget.extension])
+              .filter((widget: Widget) => app.data.extensions[widget.extension!])
               .map((widget: Widget, index: number) => {
                 const attrs = {};
                 const available = this.isWidgetAvailable(widget);
@@ -193,7 +202,7 @@ export default class WidgetEditor extends ExtensionPage {
   }
 
   widget(widget: Widget, placed: boolean = false): Mithril.Children {
-    const extension = app.data.extensions[widget.extension];
+    const extension = app.data.extensions[widget.extension!];
 
     return (
       <div className="Afrux-ForumWidgets-Widget-container">
