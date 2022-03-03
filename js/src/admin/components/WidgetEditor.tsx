@@ -1,12 +1,12 @@
 import app from 'flarum/admin/app';
 import sortable from 'sortablejs';
 import type Mithril from 'mithril';
-import ExtensionPage, {ExtensionPageAttrs} from 'flarum/admin/components/ExtensionPage';
+import ExtensionPage, { ExtensionPageAttrs } from 'flarum/admin/components/ExtensionPage';
 import icon from 'flarum/common/helpers/icon';
 
 import sortWidgets from '../../common/utils/sortWidgets';
 import type { Widget } from '../../common/extend/Widgets';
-import Alert from "flarum/common/components/Alert";
+import Alert from 'flarum/common/components/Alert';
 
 interface WidgetEditorAttrs extends ExtensionPageAttrs {}
 
@@ -64,7 +64,7 @@ export default class WidgetEditor extends ExtensionPage<WidgetEditorAttrs> {
             </div>
           </div>
           <div className="Afrux-ForumWidgets-layout-hero Afrux-ForumWidgets-layout-concrete">
-            <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--header"/>
+            <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--header" />
             <div className="Afrux-ForumWidgets-layout-placeholder" />
             <div className="Afrux-ForumWidgets-layout-placeholder Afrux-ForumWidgets-layout-placeholder--long" />
           </div>

@@ -31,7 +31,8 @@ export default class TopWidgetSection extends Component {
               this.scrollEnd(true);
             }
           }
-        }}>
+        }}
+      >
         {sortWidgets(app.widgets.get('top')).map((widget) => widget.component.component({ state: widget.state }))}
       </div>
     );
