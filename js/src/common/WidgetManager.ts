@@ -51,7 +51,7 @@ export default class WidgetManager {
         // remove this in a future version and use extension value directly.
         const extension = widget.extension || widget.id!.split(':')[0];
 
-        return extension in flarum.extensions;
+        return extension.replace(/\//g,'-') in flarum.extensions;
       })
       .map((widget: Widget) => ({ ...widget, extension: widget.extension || widget.id!.split(':')[0], state: this.states[widget.id!] }));
 
