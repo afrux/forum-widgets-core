@@ -24,7 +24,7 @@ export default class Widgets {
   }
 
   extend(app: Application, extension: string): void {
-    this.widgets.map((widget: Widget) => {
+    this.widgets.forEach((widget: Widget) => {
       app.widgets.add(widget, extension);
     });
   }
